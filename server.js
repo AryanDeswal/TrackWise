@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 
 app.get("/client", (req,res)=>{
-    res.sendFile()
+    res.send("GHxsdf");
 })
 
 app.get("/", (req, res) => {
