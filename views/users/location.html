@@ -91,7 +91,7 @@
             const userName = "DummyUserName"
             status.textContent = "";
             const xhr = new XMLHttpRequest();
-            const url = `/${userName}/location`;
+            const url = `/user/${userName}/location`;
             xhr.open("POST", url, true);
 
             xhr.setRequestHeader("Content-Type", "application/json");

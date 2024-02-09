@@ -3,39 +3,29 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const express = require("express");
+const ejsMate = require('ejs-mate');
 const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.engine('ejs', ejsMate);
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'))
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
-app.get("/:username", (req, res) => {
-  res.sendFile(path.join(__dirname,'/client/homepage.html'));
-});
 
-app.get("/:username/location", (req, res) => {
-  res.sendFile(path.join(__dirname,'/client/location.html'));
-});
+const userRoutes = require("./routes/users.js");
 
-app.post('/:username/location', (req, res) => {
-  console.log("Hello");
-  console.log('Request Body:', req.body);
-  console.log('Request Headers:', req.headers);
+// user routes
+app.use('/user', userRoutes);
 
-  const username = req.params.username;
-  const { latitude, longitude, accuracy } = req.body;
-
-  if (latitude === undefined || longitude === undefined || accuracy === undefined) {
-    return res.status(400).json({ error: 'Latitude, longitude, and accuracy are required.' });
-  }
-
-  console.log(`Received location data for user ${username}:`);
-  console.log(`Latitude: ${latitude}, Longitude: ${longitude}, Accuracy: ${accuracy}`);
-
-  res.json({ message: 'Location data received successfull.' });
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/users/homepage.html'));
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });
