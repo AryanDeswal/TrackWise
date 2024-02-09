@@ -37,11 +37,10 @@
 
         #map {
             width: 80%;
-            height: 400px;
+            height: 60vh;
             margin-top: 10px;
             margin-left: 10%;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 5%;
         }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -54,7 +53,7 @@
     <div id="container">
         <h1>Location Page</h1>
         <button id="find-me">Start Sharing location</button><br />
-        <button id="find-me">Stop Sharing location</button><br />
+        <button id="stop-find-me">Stop Sharing location</button><br />
         <p id="status"></p>
         <div id="map"></div>
     </div>
@@ -120,7 +119,8 @@
             if (container != null) {
                 container._leaflet_id = null;
             }
-            var map = L.map('map').setView([locDetails.latitude, locDetails.longitude], 16);
+            var map = L.map('map').setView([locDetails.latitude, locDetails.longitude], 17);
+            map.removeControl(map.zoomControl);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -131,7 +131,12 @@
                 .openPopup();
         }
 
+        function stopGeoLocation() {
+                location.reload();
+        }
+
         document.querySelector("#find-me").addEventListener("click", startGeoLocation);
+        document.querySelector("#stop-find-me").addEventListener("click", stopGeoLocation);
     </script>
 </body>
 
