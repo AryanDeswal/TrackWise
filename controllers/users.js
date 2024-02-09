@@ -4,6 +4,14 @@ module.exports.renderHomePage = (req, res) => {
     res.sendFile(path.join(__dirname, '../views/users/homepage.html'));
 };
 
+module.exports.renderRegisterPage = (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/users/register.html'));
+};
+
+module.exports.renderLoginPage = (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/users/login.html'));
+};
+
 module.exports.renderLocation = (req, res) => {
     res.sendFile(path.join(__dirname, '../views/users/location.html'));
 };
