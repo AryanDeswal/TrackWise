@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const users = require('../controllers/users.js');
+const users = require('../controllers/owners.js');
 
 
 router.route('/register')
@@ -9,11 +9,7 @@ router.route('/register')
 router.route('/login')
 .get(users.renderLoginPage);
 
-router.route('/:username')
+router.route('/:ownername')
     .get(users.renderHomePage);
-
-router.route('/:username/location')
-    .get(users.renderLocation)
-    .post(users.acceptLocationCoordinates);
 
 module.exports = router;

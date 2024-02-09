@@ -18,12 +18,16 @@ app.use(express.json());
 
 
 const userRoutes = require("./routes/users.js");
+const ownerRoutes = require("./routes/owners.js");
 
 // user routes
 app.use('/user', userRoutes);
 
+// owner routes
+app.use('/owner', ownerRoutes);
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, '/views/users/homepage.html'));
+  res.sendFile(path.join(__dirname, '/views/homepage.html'));
 });
 
 app.listen(port, () => {
