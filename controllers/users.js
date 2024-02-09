@@ -8,9 +8,21 @@ module.exports.renderRegisterPage = (req, res) => {
     res.sendFile(path.join(__dirname, '../views/users/register.html'));
 };
 
+module.exports.register = (req, res) => {
+    const { email, username, password } = req.body;
+    console.log(email, username, password);
+    res.redirect('/user/pawan');
+}
+
 module.exports.renderLoginPage = (req, res) => {
     res.sendFile(path.join(__dirname, '../views/users/login.html'));
 };
+
+module.exports.login = (req, res) => {
+    const { email, password } = req.body;
+    console.log(email, password);
+    res.redirect('/user/pawan');
+}
 
 module.exports.renderLocation = (req, res) => {
     res.sendFile(path.join(__dirname, '../views/users/location.html'));

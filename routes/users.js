@@ -4,10 +4,12 @@ const users = require('../controllers/users.js');
 
 
 router.route('/register')
-.get(users.renderRegisterPage);
+    .get(users.renderRegisterPage)
+    .post(users.register);
 
 router.route('/login')
-.get(users.renderLoginPage);
+    .get(users.renderLoginPage)
+    .post(users.login);
 
 router.route('/:username')
     .get(users.renderHomePage);

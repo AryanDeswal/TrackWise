@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const users = require('../controllers/owners.js');
+const owners = require('../controllers/owners.js');
 
 
 router.route('/register')
-.get(users.renderRegisterPage);
+    .get(owners.renderRegisterPage)
+    .post(owners.register);
 
 router.route('/login')
-.get(users.renderLoginPage);
+    .get(owners.renderLoginPage)
+    .post(owners.login);
 
 router.route('/:ownername')
-    .get(users.renderHomePage);
+    .get(owners.renderHomePage);
 
 module.exports = router;
