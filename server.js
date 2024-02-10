@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 const express = require("express");
 const ejsMate = require('ejs-mate');
 const path = require('path');
+const session = require('express-session');
+const bcrypt = require('bcrypt');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -21,6 +23,14 @@ app.use(
   })
 );
 
+// app.use(express.urlencoded({ extended: true }));
+app.use(session({
+    secret: process.env.SECRET || 'your-secret-key',
+    resave: false,
+    saveUninitialized: false
+}));
+
+
 const userRoutes = require("./routes/users.js");
 const ownerRoutes = require("./routes/owners.js");
 
@@ -33,6 +43,10 @@ app.use('/owner', ownerRoutes);
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, '/views/homepage.html'));
 });
+
+app.all('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/404.html'));
+})
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);

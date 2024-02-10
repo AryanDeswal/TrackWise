@@ -1,4 +1,6 @@
 const path = require('path');
+const bcrypt = require('bcrypt');
+const users = require('../userList.js')
 
 module.exports.renderHomePage = (req, res) => {
     res.sendFile(path.join(__dirname, '../views/users/homepage.html'));
@@ -8,20 +10,40 @@ module.exports.renderRegisterPage = (req, res) => {
     res.sendFile(path.join(__dirname, '../views/users/register.html'));
 };
 
-module.exports.register = (req, res) => {
-    const { email, username, password } = req.body;
-    console.log(email, username, password);
-    res.redirect('/user/pawan');
+module.exports.register = async (req, res) => {
+    try {
+        const { email, name, password } = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        users.registerUser({ name, email, password: hashedPassword });
+        res.status(201).redirect('/user/login');;
+    } catch (error) {
+        res.status(500).send('Internal Server Error');
+    }
 }
 
 module.exports.renderLoginPage = (req, res) => {
     res.sendFile(path.join(__dirname, '../views/users/login.html'));
 };
 
-module.exports.login = (req, res) => {
+module.exports.login = async (req, res) => {
     const { email, password } = req.body;
-    console.log(email, password);
-    res.redirect('/user/pawan');
+    user = users.checkUser(email);
+    if (user && await bcrypt.compare(password, user.password)) {
+        req.session.userId = user.email;
+        res.redirect('/user/pawan');
+    } else {
+        res.status(401).send('Invalid username or password');
+    }
+}
+
+module.exports.logout = (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            res.status(500).send('Error logging out');
+        } else {
+            res.redirect('/');
+        }
+    });
 }
 
 module.exports.renderLocation = (req, res) => {
