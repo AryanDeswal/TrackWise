@@ -3,11 +3,10 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    height: 100%;
 }
 
 body {
-    background-image: url("/assests/bg2.png");
+    background-image: url("./assests/bg2.png");
     background-size: cover; 
     background-position: center;     
     background-repeat: no-repeat; 
@@ -43,67 +42,45 @@ body {
     }
     100% {
         transform: scale(1);
-        box-shadow: 0px 0px 0px 20px rgba(121, 226, 60,0.3);
+        box-shadow: 0px 0px 0px 100px rgba(121, 226, 60,0.3);
     }
 }
 
 .beating-green{
     animation: heartbeat-green 1s infinite;
 }
-@keyframes heartbeat-map {
+@keyframes heartbeat-red {
     0% {
         transform: scale(1);
     }
     50% {
+        transform: scale(1.05);
     }
     100% {
         transform: scale(1);
-        box-shadow: 0px 0px 0px 20px rgba(121, 226, 60,0.3);
-
+        box-shadow: 0px 0px 0px 100px rgba(226, 60, 60, 0.3);
     }
 }
 
-.beating-map{
-    animation: heartbeat-map 1s infinite;
+.beating-red{
+    animation: heartbeat-red 1s infinite;
 }
 
-.start-sharing-btn {
+.start-sharing {
     position: absolute;
     top: 55%;
     left:50%; 
     transform: translate(-50%, -50%);
+}
+
+.start-sharing-btn{
+    padding: 5.5rem 1rem;
+    border-radius: 50%;
     font-size: larger;
     font-weight: 500;
     background-color: #79e23c;
-}
-
-/* .start-sharing-btn{
-    padding: 1rem;
-    margin: auto;
-    font-size: larger;
-    font-weight: 500;
-    background-color: #79e23c;
-} */
-
-.start-sharing-btn:hover{
-    background-color: #59bc20;
-}
-
-.stop-sharing-btn{
-    padding: 1rem;
-    font-size: larger;
-    font-weight: 500;
-    background-color: #e23c3c;
-}
-
-.stop-sharing-btn:hover{
-    background-color: #a81f1f;
 }
 
 .start-sharing-btn:hover{
     cursor: pointer;
-}
-
-.none{
-    display: none;
 }

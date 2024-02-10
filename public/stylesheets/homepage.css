@@ -1,0 +1,67 @@
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        box-sizing: border-box;
+        background: url("/assests/bg1.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .company-logo {
+        margin: 1rem 1rem 1rem 2rem;
+    }
+
+    .user-info {
+        display: flex;
+        justify-content: center;
+        margin-right: 2rem;
+        gap: 1rem;
+    }
+
+    .profile {
+        margin: auto;
+    }
+
+    .username {
+        margin: auto;
+        width: 10rem;
+        background-color: white;
+        padding: 14px;
+        border-radius: 5px;
+        font-family: 'Merriweather', serif;
+    }
+
+    .shareLocation-container {
+        margin-left: 75vw;
+        width: 20rem;
+        height: 15rem;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 2rem;
+        margin-top: 20rem;
+    }
+
+    .shareLocation-logo {
+        display: flex;
+        justify-content: center;
+        margin-top: 10rem;
+        height: 15rem;
+    }
+
+    .shareLocation-logo img {
+        margin-top: 8rem;
+        box-shadow: 10px 10px 10px rgba(127, 90, 240, 0.5);
+        border-radius: 30px;
+    }

@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Location</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="/stylesheets/location.css">
     <style>
         #container {
             text-align: center;
             margin: 50px auto;
         }
+
+
 
         h1 {
             font-size: 24px;
@@ -25,9 +30,6 @@
             margin-top: 10px;
         }
 
-        button:hover {
-            background-color: #0056b3;
-        }
 
         #status {
             margin-top: 20px;
@@ -40,7 +42,7 @@
             height: 60vh;
             margin-top: 10px;
             margin-left: 10%;
-            border-radius: 5%;
+            border-radius: 5px;
         }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -51,15 +53,18 @@
 
 <body>
     <div id="container">
-        <h1>Location Page</h1>
-        <button id="find-me">Start Sharing location</button><br />
-        <button id="stop-find-me">Stop Sharing location</button><br />
+        <button id="find-me" class="start-sharing-btn">Start Sharing location</button><br />
+        <button id="stop-find-me" class="stop-sharing-btn none">Stop Sharing location</button><br />
         <p id="status"></p>
         <div id="map"></div>
     </div>
     <script>
         function startGeoLocation() {
             setInterval(() => {
+                document.querySelector("#find-me").classList.add("none");
+                document.querySelector("#stop-find-me").classList.remove("none");
+                document.querySelector("#map").classList.add("beating-map");
+                document.querySelector("#find-me").innerHTML="Sharing your location";
                 geoFindMe()
             }, 3000);
         }
@@ -132,7 +137,7 @@
         }
 
         function stopGeoLocation() {
-                location.reload();
+            location.reload();
         }
 
         document.querySelector("#find-me").addEventListener("click", startGeoLocation);

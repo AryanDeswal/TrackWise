@@ -1,50 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+        <link rel="stylesheet" href="/stylesheets/index.css">
+    </head>
+    
+    <body>
+        <header class="header">
+            <div class="company-logo">
+                <img src="/assests/TrackWise.png" alt="">
+            </div>
+            <div class="user-info">
+                <div class="profile">
+                    <img src="/assests/profile.png" width="60rem" alt="">
+                </div>
+                <div class="username">Ram</div>
+                <a href="http://localhost:3000/owner/pawan/monitor">Monitor</a>
+                <a href="http://localhost:3000/owner/logout">LogOut</a>
+        </div>
+    </header>
+    <section class="main-container">
+        <div class="trucks-container">
+            <div class="chart-container">
+                <div class="truck-users">
+                    <button onclick="handleTruck(1)" class="truck-btn clicked">Truck 1</button>
+                    <button onclick="handleTruck(2)" class="truck-btn">Truck 2</button>
+                    <button onclick="handleTruck(3)" class="truck-btn">Truck 3</button>
+                    <button onclick="handleTruck(4)" class="truck-btn">Truck 4</button>
+                    <button onclick="handleTruck(5)" class="truck-btn">Truck 5</button>
+                </div>
+                <div class="charts">
+                    <div class="chart-nav">
+                        <button onclick="handleChart(1)" class="chart-btn clicked">Past 10 Hrs</button>
+                        <button onclick="handleChart(2)" class="chart-btn">Past 10 Days</button>
+                        <button onclick="handleChart(3)" class="chart-btn">Fuel Indicator</button>
+                        <button onclick="handleChart(4)" class="chart-btn">Expenses</button>
+                    </div>
+                    <div class="chart">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f2f2f2;
-        }
+                        <div class="distance-chart">
+                            <canvas id="myChart1"></canvas>
+                            <span class="distanceTravelledPerHr">Distance Travelled/Hr</span>
+                        </div>
+                        <div class="distance-chart ">
+                            <canvas id="myChart3"></canvas>
+                            <span class="pastTenDaysDistance">Speed Km/Hr</span>
+                        </div>
+                        <div class="distance-chart none-chart">
+                            <canvas id="myChart2"></canvas>
+                            <span class="pastTenDaysDistance">Distance Travelled/Day</span>
+                        </div>
+                        <div class="distance-chart none-chart">
+                            <canvas id="myChart4"></canvas>
+                            <span class="pastTenDaysDistance">Speed Km/Hr</span>
+                        </div>
+                        <div class="distance-chart none-chart">
+                            <canvas id="myChart5"></canvas>
+                            <span class="pastTenDaysDistance">Fuel Indicator</span>
+                        </div>
+                        <div class="distance-chart none-chart">
+                            <canvas id="myChart6"></canvas>
+                            <span class="pastTenDaysDistance">Fuel Indicator</span>
+                        </div>
 
-        .container {
-            text-align: center;
-        }
+                    </div>
 
-        .option {
-            display: inline-block;
-            margin: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
+                </div>
+            </div>
+        </div>
+    </section>
 
-        #register {
-            background-color: #28a745;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <h1>Owner Home Page</h1>
-        <a href="http://localhost:3000/owner/pawan/monitor">Monitor</a>
-        <a href="http://localhost:3000/owner/logout">LogOut</a>
-    </div>
 </body>
+<script src="/javascripts/kmPerHr.js"></script>
+<script src="/javascripts/kmPerDay.js"></script>
+<script src="/javascripts/avgSpeedPerHr.js"></script>
+<script src="/javascripts/avgSpeedPerDay.js"></script>
+<script src="/javascripts/battery.js"></script>
+<script src="/javascripts/expenses.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".truck-btn");
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                buttons.forEach(btn => btn.classList.remove("clicked")); // Remove clicked class from all buttons
+                this.classList.add("clicked"); // Add clicked class to the clicked button
+            });
+        });
+        const buttons2 = document.querySelectorAll(".chart-btn");
+        buttons2.forEach(button => {
+            button.addEventListener("click", function () {
+                buttons2.forEach(btn => btn.classList.remove("clicked")); // Remove clicked class from all buttons
+                this.classList.add("clicked"); // Add clicked class to the clicked button
+            });
+        });
+
+    });
+    function handleChart(num){
+        const canvas = document.querySelectorAll(".distance-chart");
+        console.log(canvas);
+        if(num===1){
+            canvas[0].classList.remove("none-chart");
+            canvas[1].classList.remove("none-chart");
+            canvas[2].classList.add("none-chart");
+            canvas[3].classList.add("none-chart");
+            canvas[4].classList.add("none-chart");
+            canvas[5].classList.add("none-chart");
+        }else if(num==2){
+            canvas[0].classList.add("none-chart");
+            canvas[1].classList.add("none-chart");
+            canvas[2].classList.remove("none-chart");
+            canvas[3].classList.remove("none-chart");
+            canvas[4].classList.add("none-chart");
+            canvas[5].classList.add("none-chart");
+        }else if(num==3){
+            canvas[0].classList.add("none-chart");
+            canvas[1].classList.add("none-chart");
+            canvas[2].classList.add("none-chart");
+            canvas[3].classList.add("none-chart");
+            canvas[4].classList.remove("none-chart");
+            canvas[5].classList.add("none-chart");
+        }else{
+            canvas[0].classList.add("none-chart");
+            canvas[1].classList.add("none-chart");
+            canvas[2].classList.add("none-chart");
+            canvas[3].classList.add("none-chart");
+            canvas[4].classList.add("none-chart");
+            canvas[5].classList.remove("none-chart");
+        }
+
+    }
+</script>
 
 </html>
