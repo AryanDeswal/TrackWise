@@ -4,11 +4,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitor</title>
+    <title>Location</title>
+    <style>
+        #container {
+            text-align: center;
+            margin: 50px auto;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #status {
+            margin-top: 20px;
+            font-style: italic;
+            color: #888;
+        }
+
+        #map {
+            width: 80%;
+            height: 60vh;
+            margin-top: 10px;
+            margin-left: 10%;
+            border-radius: 5%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 
 <body>
-    <h1>Monitor Page</h1>
+    <div id="container">
+        <h1>Owner Dashboard</h1>
+        <p>Welcome to your dashboard, Owner!</p>
+
+        <h2>Live User Locations</h2>
+        <p>Here are the current live locations of your users:</p>
+
+        <button id="start-monitor">Start Monitoring</button><br />
+        <button id="stop-monitor">Stop Monitoring</button><br />
+        <div id="map"></div>
+    </div>
+    <script>
+        function startUserLocation() {
+            setInterval(() => {
+                getUserLocation()
+            }, 3000);
+        }
+
+        function getUserLocation() {
+            var locations = [
+                {
+                    "latitude": 18.605735,
+                    "longitude": 73.874809,
+                    "accuracy": 77,
+                    "name": "abc"
+                },
+                {
+                    "latitude": 35.605735,
+                    "longitude": 73.874809,
+                    "accuracy": 77,
+                    "name": "bca"
+                },
+                {
+                    "latitude": 18.605735,
+                    "longitude": 72.874809,
+                    "accuracy": 77,
+                    "name": "cab"
+                },
+                {
+                    "latitude": 19.605735,
+                    "longitude": 72.874809,
+                    "accuracy": 77,
+                    "name": "xyz"
+                },
+                {
+                    "latitude": 19.605735,
+                    "longitude": 71.874809,
+                    "accuracy": 77,
+                    "name": "pqr"
+                },
+
+                {
+                    "latitude": 20.605735,
+                    "longitude": 71.874809,
+                    "accuracy": 77,
+                    "name": "poie"
+                },
+                {
+                    "latitude": 19.605735,
+                    "longitude": 70.874809,
+                    "accuracy": 77,
+                    "name": "vkjds"
+                }
+            ];
+            startMonitoring(locations)
+        }
+        function startMonitoring(locations) {
+            var { latitude, longitude, accuracy } = locations[0];
+            console.log(latitude, longitude, accuracy);
+            var container = L.DomUtil.get('map');
+            if (container != null) {
+                container._leaflet_id = null;
+            }
+            var map = L.map('map').setView([latitude, longitude], 4);
+            mapLink =
+                '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+            L.tileLayer(
+                'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; ' + mapLink + ' Contributors',
+                maxZoom: 18,
+            }).addTo(map);
+            map.removeControl(map.zoomControl);
+            // const lo
+            for (var i = 0; i < locations.length; i++) {
+                var { latitude, longitude, name } = locations[i];
+                marker = new L.marker([latitude, longitude]).addTo(map)
+                    .bindPopup(`Name : ${name}`)
+                    .openPopup();
+            }
+        }
+
+        function stopMonitoring() {
+            location.reload();
+        }
+
+        document.querySelector("#start-monitor").addEventListener("click", startUserLocation);
+        document.querySelector("#stop-monitor").addEventListener("click", stopMonitoring);
+    </script>
 </body>
 
 </html>
