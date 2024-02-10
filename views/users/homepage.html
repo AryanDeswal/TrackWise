@@ -4,45 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f2f2f2;
-        }
-
-        .container {
-            text-align: center;
-        }
-
-        .option {
-            display: inline-block;
-            margin: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        #register {
-            background-color: #28a745;
-        }
-    </style>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/stylesheets/homepage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <a href="http://localhost:3000/user/pawan/location" class="option" id="location">Share Your Location</a>
-        <a href="http://localhost:3000/user/logout">LogOut</a>
+    <header class="header">
+        <div class="company-logo">
+            <img src="/assests/TrackWise.png" alt="">
+        </div>
+        <div class="user-info">
+            <div class="profile">
+                <img src="/assests/profile.png" width="60rem" alt="">
+            </div>
+            <div class="username">Pawan</div>
+            <a href="http://localhost:3000/user/logout">LogOut</a>
+        </div>
+    </header>
+    <div class="shareLocation-container">
+        <div class="shareLocation-logo">
+            <a href="http://localhost:3000/user/pawan/location"><img src="/assests/shareLocation.png" alt=""
+                    height="60rem"></a>
+        </div>
     </div>
 </body>
 

@@ -1,0 +1,185 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+    background: url("/assests/bg2.png");
+    background-size: cover;
+    background-position: center;
+    /* background-repeat: no-repeat; */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.company-logo {
+    margin: 1rem 1rem 1rem 2rem;
+}
+
+.user-info {
+    display: flex;
+    justify-content: center;
+    margin-right: 2rem;
+    gap: 1rem;
+}
+
+.profile {
+    margin: auto;
+}
+
+.username {
+    margin: auto;
+    width: 10rem;
+    background-color: white;
+    padding: 14px;
+    border-radius: 5px;
+    font-family: 'Merriweather', serif;
+}
+
+.main-container {
+    margin: 2rem auto;
+    border-radius: 1rem;
+    width: 95rem;
+    border: 3px solid #7f5af0;
+    height: 40rem;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.trucks-container {
+    margin: auto;
+    border-radius: 10px;
+    width: 95rem;
+    /* border: 2px solid black; */
+    height: 40rem;
+    background-color: rgba(217, 217, 217, 0.8);
+}
+
+.chart-container {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    height: 100%;
+}
+
+.truck-users {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+    /* border: 2px solid red; */
+    width: 12rem;
+    margin: 10px;
+    margin-left: 2rem;
+    border-radius: 7px;
+}
+
+.truck-btn {
+    width: 10rem;
+    background-color: #7f5af0;
+    border: 2px solid white;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: larger;
+    font-weight: 600;
+}
+
+.truck-btn:hover {
+    cursor: pointer;
+}
+
+
+.truck-btn:active,
+.truck-btn.clicked {
+    background-color: white;
+}
+
+.truck-btn:first-of-type {
+    margin-top: 2rem;
+}
+
+.truck-btn:last-of-type {
+    margin-bottom: 2rem;
+}
+
+.charts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 100%;
+    border: 3px solid #7f5af0;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.chart-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    width: 100%;
+}
+
+.chart-btn {
+    width: 10rem;
+    background-color: #7f5af0;
+    border: 2px solid white;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: larger;
+    font-weight: 600;
+}
+
+.chart-btn:hover{
+    cursor: pointer;
+}
+
+.chart-btn:active,
+.chart-btn.clicked {
+    background-color: white;
+    border: 2px solid #7f5af0;
+}
+
+.chart {
+    display: flex;
+}
+
+.none-chart{
+    display: none;
+}
+
+.distance-chart {
+    margin: auto;
+    width: 32rem;
+    /* border: 2px solid rgb(182, 107, 119); */
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: rgba(222, 222, 222, 0.8);
+
+
+}
+
+.distanceTravelledPerHr,
+.pastTenDaysDistance {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.map{
+    width: 80;
+}
