@@ -18,8 +18,8 @@
                     <img src="/assests/profile.png" width="60rem" alt="">
                 </div>
                 <div class="username">Ram</div>
-                <a href="http://localhost:3000/owner/pawan/monitor">Monitor</a>
-                <a href="http://localhost:3000/owner/logout">LogOut</a>
+                <a class="owner-btn" href="http://localhost:3000/owner/pawan/monitor">Monitor</a>
+                <a class="owner-btn" href="http://localhost:3000/owner/logout">LogOut</a>
         </div>
     </header>
     <section class="main-container">
@@ -61,9 +61,11 @@
                             <canvas id="myChart5"></canvas>
                             <span class="pastTenDaysDistance">Fuel Indicator</span>
                         </div>
-                        <div class="distance-chart none-chart">
+                        <div class="distance-chart none-chart pie-chart">
                             <canvas id="myChart6"></canvas>
-                            <span class="pastTenDaysDistance">Fuel Indicator</span>
+                            <span id="budget" class="pastTenDaysDistance">Expenses</span>
+                            <span id="expense" class="pastTenDaysDistance">Expenses</span>
+                            <span id="profit" class="pastTenDaysDistance">Expenses</span>
                         </div>
 
                     </div>

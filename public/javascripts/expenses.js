@@ -1,23 +1,24 @@
-expenses=[
+expenses = [
     {
-        "Fuel":5000
+        "Fuel": 5000
     },
     {
-        "Food":510
+        "Food": 510
     },
     {
-        "Toll":370
+        "Toll": 370
     },
     {
-        "Repair":550
+        "Repair": 550
     },
     {
-        "Others":150
+        "Others": 150
     },
     {
-        "Profit":2000
+        "Profit": 2000
     }
 ]
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const ctx = document.getElementById('myChart6');
@@ -57,14 +58,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     text: 'Expenses Breakdown'
                 }
             }
-        },
-        layout: {
-            padding: {
-                left: 5,
-                right: 5,
-                top: 5,
-                bottom: 5
-            }
         }
     });
+
+    let totalExpense=0;
+    data.forEach(item => {
+        totalExpense += item;
+    });
+    console.log(totalExpense, "exp");
+
+    const budget = document.getElementById("budget");
+    budget.innerHTML = `Budget: ${10000}`
+    const expense = document.getElementById("expense");
+    expense.innerHTML = `Expense: ${totalExpense}`
+    const profit = document.getElementById("profit");
+    profit.innerHTML = `Profit: ${10000 - totalExpense}`
 });

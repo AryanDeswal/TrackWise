@@ -173,6 +173,10 @@ body {
 
 }
 
+.pie-chart{
+    width: 20rem !important;
+}
+
 .distanceTravelledPerHr,
 .pastTenDaysDistance {
     display: flex;
@@ -182,4 +186,18 @@ body {
 
 .map{
     width: 80;
+}
+
+.owner-btn{
+    margin: auto;
+    padding: 1rem;
+    background-color: blue;
+    height: 1rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.owner-btn:hover{
+    background-color: rgb(0, 0, 216);
 }
